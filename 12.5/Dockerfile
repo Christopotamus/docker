@@ -10,7 +10,7 @@ ENV PLESK_DISABLE_HOSTNAME_CHECKING 1
 RUN sed -i -e 's/exit.*/exit 0/g' /usr/sbin/policy-rc.d
 
 RUN apt-get update \
-    && apt-get install -y wget \
+    && apt-get install -y wget openssh-server \
     && wget -q -O /root/ai http://autoinstall.plesk.com/plesk-installer \
     && bash /root/ai \
         --select-product-id=plesk \
@@ -52,4 +52,4 @@ CMD /run.sh
 # 3306 - mysql
 # 8880 - plesk via http
 # 8443 - plesk via https
-EXPOSE 21 80 443 8880 8443
+EXPOSE 21 22 80 443 8880 8443
